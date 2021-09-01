@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include <JuceHeader.h>
+#include <juce_audio_basics/juce_audio_basics.h>
 
 // maximum number of samples in the delay buffer
 #define SF_COMPRESSOR_MAXDELAY   1024
@@ -22,7 +22,8 @@
 // not sure what this does exactly, but it is part of the release curve
 #define SF_COMPRESSOR_SPACINGDB  5.0f
 
-#define M_PI 3.1415926535
+// already defined in math.h
+// #define M_PI 3.1415926535
 
 class Compressor
 {
@@ -105,7 +106,7 @@ private:
 	}
 	inline float fixf(float v, float def) {
 		// fix NaN and infinity values that sneak in... not sure why this is needed, but it is
-		if (isnan(v) || isinf(v))
+		if (std::isnan(v) || std::isinf(v))
 		{
 			DBG("fixf check out of bounds, v set to def at value: " << def);
 			DBG("v was value: " << v);
